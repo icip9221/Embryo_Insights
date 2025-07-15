@@ -67,6 +67,19 @@ Each component is dynamically registered and built using YAML configs and Python
 ### 📦 Install Dependencies
 
 ```bash
+# Create virtual environment (Linux/macOS)
+python3 -m venv env
+
+# Activate the environment
+source env/bin/activate
+
+# --- OR on Windows ---
+# python -m venv env
+# .\env\Scripts\activate
+
+```
+
+```bash
 pip install -r requirements.txt
 ```
 
