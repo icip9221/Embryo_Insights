@@ -1,19 +1,26 @@
-Thank you! Based on your actual project structure and architectural pattern (Chain of Responsibility + Builder), here is a tailored `README.md` for your repository `Embryo_Insights`:
+Absolutely! Here's the **full updated `README.md`** file for your `Embryo_Insights` repository, now including the **YOLOv8 weights download link**, the **ESAVA reimplementation acknowledgment**, and properly formatted sections:
 
 ---
 
-# From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos
+# 🧬 From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos
 
 This repository contains the official implementation of our paper:
 
 > **From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos**
 > Nguyen Duy Tan, Tran Phuong Huy, Tran Thi Thanh Thuy, Hoang Thi Diem Tuyet, Dang Truong Son, Pham The Bao, Vu Ngoc Thanh Sang
 
-## 🧬 Overview
+---
 
-This project presents a robust and automated pipeline for evaluating Day 3 embryos by performing **blastomere detection**, **boundary refinement**, and **uniformity assessment**. The approach integrates deep learning (YOLOv8) with advanced image processing techniques (GVF-based active contours) and calculates a novel metric, **Normalized Uniformity Value (NUV)**, for grading embryo quality.
+## 📌 Overview
 
-The system is designed using the **Chain of Responsibility** and **Builder** design patterns, ensuring modularity, flexibility, and easy extension for different embryo analysis pipelines.
+This project presents a robust and automated pipeline for evaluating **Day 3 embryos** by performing **blastomere detection**, **boundary refinement**, and **uniformity assessment**.
+Our hybrid approach integrates:
+
+* **YOLOv8-based object detection**
+* **GVF-based active contour refinement**
+* A novel **Normalized Uniformity Value (NUV)** for grading consistency
+
+The architecture follows the **Chain of Responsibility** and **Builder** design patterns for clean modularity and extensibility.
 
 ---
 
@@ -21,43 +28,41 @@ The system is designed using the **Chain of Responsibility** and **Builder** des
 
 ```
 Embryo_Insights/
-├── main.py                         # Entry point to run the full embryo analysis pipeline
+├── main.py                         # Entry point for executing the full pipeline
 ├── requirements.txt                # Python dependencies
 ├── LICENSE                         # License information
-├── README.md                       # Project description (you are here)
+├── README.md                       # You are here
 │
-├── abstract/                       # Abstract base classes for algorithm handlers and processes
-├── adapter/                        # YOLOv8 detection adapter and utility functions
-├── algorithms/                     # Implementations of cell enhancement, detection, segmentation, uniformity
-├── config/                         # YAML config files for algorithm chain setups
-├── manager/                        # Pipeline manager to run the defined process chain
-├── registry/                       # Builder & registry for constructing pipeline based on configs
-├── data/                           # Sample embryo image datasets (microscope/timelapse)
-├── scripts/                        # Shell scripts to run the pipeline for different datasets
-└── weights/                        # Pretrained detection models (YOLOv8, YOLOv11, YOLOX, etc.)
+├── abstract/                       # Abstract base classes for all processes
+├── adapter/                        # YOLOv8 ONNX adapter and inference tools
+├── algorithms/                     # Core implementations (enhancement, detection, contours, grading)
+├── config/                         # Pipeline configuration files (YAML)
+├── manager/                        # Chain-of-responsibility handler
+├── registry/                       # Registry and builder for pipeline creation
+├── data/                           # Sample microscope and timelapse embryo images
+├── scripts/                        # Scripts for batch evaluation
+└── weights/                        # Directory for pretrained detection models
 ```
 
 ---
 
 ## ⚙️ How It Works
 
-### 🔗 Chain of Responsibility + Builder Pattern
+### 🔗 Modular Pipeline with Chain of Responsibility
 
-Each analysis stage (detection → contour refinement → uniformity grading) is implemented as a separate algorithm module, connected dynamically through a configurable pipeline:
+The processing stages are implemented as standalone modules:
 
-* `abstract/`: Defines `abs_algorithm_process_handler.py` and related interfaces.
-* `registry/`: Dynamically builds processing chains based on config files using `process_builder.py`.
+* Detection (`YOLOv8`)
+* Segmentation (`GVF Snake`, `ESAVA`, or `TV/Bilateral`)
+* Uniformity scoring (`NUV`)
 
-### 🧪 Workflow
+Each component is dynamically registered and built using YAML configs and Python classes.
 
-1. **Blastomere Detection**:
-   YOLOv8 detects cell locations and provides bounding ellipses.
+### 🔁 Workflow
 
-2. **Contour Refinement**:
-   GVF-based snake model refines detected boundaries, improving precision.
-
-3. **Uniformity Grading**:
-   NUV is calculated from refined masks to evaluate cell size consistency.
+1. **Detection** – YOLOv8 locates blastomeres using bounding ellipses.
+2. **Refinement** – Active contour or ESAVA segmentation refines the boundary.
+3. **Grading** – Calculates **NUV** from areas to assess cell uniformity.
 
 ---
 
@@ -69,22 +74,36 @@ Each analysis stage (detection → contour refinement → uniformity grading) is
 pip install -r requirements.txt
 ```
 
-### ▶️ Run the Pipeline
+### 📥 Download Pretrained Weights
+
+Download the YOLOv8 object detection model weights here:
+
+🔗 **[Download YOLOv8 Weights](https://drive.google.com/drive/folders/1suOTlOYGPH2i7BkMhlE92GpJN3rzUh6y?usp=sharing)**
+
+Then place them inside the `weights/` directory.
+
+> These weights are trained specifically on Day 3 embryo microscope and timelapse data.
+
+---
+
+### ▶️ Run the Pipeline on a Single Image
 
 ```bash
 python main.py --pipeline_config config/GVFSnake.yaml --image data/microscope/xcells.jpg
 ```
 
-### 🖥️ Batch Processing with Shell Scripts
+---
 
-Before running the provided shell scripts, make sure they are executable:
+### 📂 Run on Multiple Images with Scripts
+
+Before running:
 
 ```bash
 chmod +x scripts/microscope_script.sh
 chmod +x scripts/timelapse_script.sh
 ```
 
-Then run them:
+Then execute:
 
 ```bash
 ./scripts/microscope_script.sh
@@ -93,59 +112,49 @@ Then run them:
 
 ---
 
-### 🔧 Configurable Pipelines
+### ⚙️ Configurable Pipeline via YAML
 
-You can customize or switch processing pipelines via YAML files in the `config/` directory:
+Switch between different processing methods via YAML in `config/`:
 
-* `GVFSnake.yaml`: Uses GVF-snake for refinement
-* `Snake.yaml`: Basic snake contour refinement
-
----
-
-## 📊 Results & Contributions
-
-### ✅ Main Contributions
-
-1. **Hybrid architecture** combining YOLOv8 and GVF-snake for precise grading.
-2. **Reduced subjectivity** in embryo evaluation via automation.
-3. **NUV metric** introduced to objectively assess uniformity across cells.
-
-### 🧪 Evaluation
-
-The model shows high robustness in:
-
-* Overlapping cell detection
-* Low-contrast environments
-* Accurate spatial boundary estimation
+* `GVFSnake.yaml`: Uses GVF-based snake model
+* `Snake.yaml`: Uses basic active contour segmentation
+* `ESAVA.yaml`: Uses the reimplemented ESAVA method
 
 ---
 
-1. **A new section** acknowledging the reimplementation of the ESAVA method for comparison.
-2. **Citation** of the original ESAVA paper using both a sentence and a formal BibTeX entry.
+## 📊 Main Contributions
+
+* ⚙️ A hybrid framework combining YOLOv8 detection with GVF-snake contour refinement
+* 🧠 Introduction of the **NUV (Normalized Uniformity Value)** for objective blastomere grading
+* 📦 Modular design using **Chain of Responsibility** + **Builder pattern**
+* 🤖 Robust performance on microscope and time-lapse embryo images
+* 🔁 Built-in support for comparing alternative segmentation methods like **ESAVA**
 
 ---
 
 ## 🧪 Comparative Benchmarking
 
-To evaluate the effectiveness of our proposed method, we **reimplemented the ESAVA method** from the original repository:
+We reimplemented the **ESAVA method** from the official repository to provide a comparison baseline for segmentation and grading:
 
 🔗 [https://github.com/fsccycy/ESAVA](https://github.com/fsccycy/ESAVA)
 
-This model, originally developed by Liao et al. (2024), provides an established baseline for blastomere contour refinement and embryo evaluation. We used it as a benchmark to **compare segmentation accuracy, grading consistency, and robustness** against our hybrid YOLOv8 + GVF-Snake approach.
+This reimplementation was evaluated against our proposed GVF-enhanced contouring pipeline to assess accuracy and grading consistency.
 
-> 📖 **Citation for ESAVA:**
+> 📖 **Citation for ESAVA**:
 
 ```
 Liao Z, Yan C, Wang J, Zhang N, Yang H, Lin C, Zhang H, Wang W, Li W.  
 A clinical consensus-compliant deep learning approach to quantitatively evaluate human in vitro fertilization early embryonic development with optical microscope images.  
-*Artificial Intelligence in Medicine*. 2024 Mar;149:102773.  
+Artificial Intelligence in Medicine. 2024 Mar;149:102773.  
 doi: 10.1016/j.artmed.2024.102773  
 PMID: 38462274.
 ```
+
 ---
 
-
 ## 📚 Citation
+
+If you find this work useful, please cite us:
 
 ```bibtex
 @inproceedings{nguyen2025embryo,
@@ -159,14 +168,17 @@ PMID: 38462274.
 
 ## 🙏 Acknowledgments
 
-* IC-IP Lab, Saigon University
-* Hung Vuong Hospital
-* HP Fertility, Hai Phong International Hospital
+* 🏥 Hung Vuong Hospital
+* 🧪 HP Fertility Center – Hai Phong International Hospital
+* 💻 IC-IP Lab, Faculty of Information Technology, Saigon University
 
 ---
 
 ## 📬 Contact
 
 📧 **[vungocthanhsang@sgu.edu.vn](mailto:vungocthanhsang@sgu.edu.vn)**
+📧 **[ngduytan288@gmail.com](mailto:ngduytan288@gmail.com)**
 
-Let me know if you'd like help generating example config files, training the detection model, or packaging the project for PyPI or Docker.
+---
+
+Let me know if you'd like me to help generate badges, convert this to a GitHub Pages page, or prepare a release version with example output folders.
