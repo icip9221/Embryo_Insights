@@ -1,0 +1,23 @@
+builder: Blastomere
+cfg:
+  pipeline:
+    BlastomereCellLocalization:
+      config:
+        model: YOLOv8DETONNX
+        params:
+          path: weights/YOLOv8_detection.onnx
+          conf_thres: 0.6
+          iou_thres: 0.95
+        
+    SnakeContourAnalysis:
+      type: "LocalPatchESAVA"
+      config:
+        padding: -9
+        angle: 0 
+        dilation_value: 4
+        active_contour_params: null
+      
+        enhancer_config:
+          config:
+            method: local_patch_esava
+            denoiser_params: null

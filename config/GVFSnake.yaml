@@ -1,0 +1,41 @@
+builder: Blastomere
+cfg:
+  pipeline:
+    BlastomereCellLocalization:
+      config:
+        model: YOLOv8DETONNX
+        params:
+          path: weights/YOLOv8_detection.onnx
+          conf_thres: 0.6
+          iou_thres: 0.85
+
+    SnakeContourAnalysis:
+      type: "GVF"
+      config:
+        padding: -5
+        angle: 0 
+        dilation_value: 5
+        active_contour_params:
+          config: 
+            length_coordinate_points: 1000
+            alpha: 3.5
+            beta: 4.5
+            gamma: 0.5
+            max_px_move: 1 
+            boundary_condition: "periodic"
+            w_edge: 2
+            w_line: -2
+            max_iterations: 1000 
+            convergence_order: 10
+            convergence: 0.05
+            mu: 0.2
+      
+        enhancer_config:
+          config:
+            method: kernel_denoising
+            denoiser_params:
+              method: "gaussian"
+              denoiser_params:
+                sigma: 5
+    
+    Uniformity: null

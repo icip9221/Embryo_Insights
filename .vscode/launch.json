@@ -1,0 +1,52 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "GVF",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--pipeline_config", "config/GVFSnake.yaml",
+        "--image", "data/microscope/6cells.jpg"
+      ]
+    },
+
+    {
+      "name": "Snake",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--pipeline_config", "config/Snake.yaml",
+        "--image", "data/microscope/6cells.jpg"
+      ]
+    },
+
+    {
+      "name": "LocalPatchESAVA",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--pipeline_config", "config/LocalPatchESAVA.yaml",
+        "--image", "data/microscope/6cells.jpg"
+      ]
+    },
+
+    {
+      "name": "OriginalESAVA",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/main.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--pipeline_config", "config/OriginalESAVA.yaml",
+        "--image", "data/microscope/6cells.jpg"
+      ]
+    }
+]
+}
