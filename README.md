@@ -1,7 +1,3 @@
-Absolutely! Here's the **full updated `README.md`** file for your `Embryo_Insights` repository, now including the **YOLOv8 weights download link**, the **ESAVA reimplementation acknowledgment**, and properly formatted sections:
-
----
-
 # 🧬 From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos
 
 This repository contains the official implementation of our paper:
@@ -180,5 +176,3 @@ If you find this work useful, please cite us:
 📧 **[ngduytan288@gmail.com](mailto:ngduytan288@gmail.com)**
 
 ---
-
-Let me know if you'd like me to help generate badges, convert this to a GitHub Pages page, or prepare a release version with example output folders.
