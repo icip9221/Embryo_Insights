@@ -159,7 +159,7 @@ This reimplementation was evaluated against our proposed GVF-enhanced contouring
 
 ## 📬 Contact
 
-📧 **[vungocthanhsang@sgu.edu.vn](mailto:vungocthanhsang@sgu.edu.vn)**
+📧 **[vntsang@sgu.edu.vn](mailto:vntsang@sgu.edu.vn)**
 📧 **[ngduytan288@gmail.com](mailto:ngduytan288@gmail.com)**
 
 ---
