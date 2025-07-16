@@ -149,16 +149,6 @@ We reimplemented the **ESAVA method** from the official repository to provide a 
 
 This reimplementation was evaluated against our proposed GVF-enhanced contouring pipeline to assess accuracy and grading consistency.
 
-> 📖 **Citation for ESAVA**:
-
-```
-Liao Z, Yan C, Wang J, Zhang N, Yang H, Lin C, Zhang H, Wang W, Li W.  
-A clinical consensus-compliant deep learning approach to quantitatively evaluate human in vitro fertilization early embryonic development with optical microscope images.  
-Artificial Intelligence in Medicine. 2024 Mar;149:102773.  
-doi: 10.1016/j.artmed.2024.102773  
-PMID: 38462274.
-```
-
 ## 🙏 Acknowledgments
 
 * 🏥 Hung Vuong Hospital, Ho Chi Minh city, Vietnam
