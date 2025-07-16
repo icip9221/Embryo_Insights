@@ -159,27 +159,11 @@ doi: 10.1016/j.artmed.2024.102773
 PMID: 38462274.
 ```
 
----
-
-## 📚 Citation
-
-If you find this work useful, please cite us:
-
-```bibtex
-@inproceedings{nguyen2025embryo,
-  title={From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos},
-  author={Nguyen, Duy Tan and Tran, Phuong Huy and Tran, Thi Thanh Thuy and Hoang, Thi Diem Tuyet and Dang, Truong Son and Pham, The Bao and Vu, Ngoc Thanh Sang},
-  year={2025}
-}
-```
-
----
-
 ## 🙏 Acknowledgments
 
-* 🏥 Hung Vuong Hospital
-* 🧪 HP Fertility Center – Hai Phong International Hospital
-* 💻 IC-IP Lab, Faculty of Information Technology, Saigon University
+* 🏥 Hung Vuong Hospital, Ho Chi Minh city, Vietnam
+* 🧪 HP Fertility Center – Hai Phong International Hospital, Hai Phong city, Vietnam
+* 💻 IC-IP Lab, Faculty of Information Technology, Saigon University, Ho Chi Minh city, Vietnam
 
 ---
 
