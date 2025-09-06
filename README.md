@@ -2,8 +2,10 @@
 
 This repository contains the official implementation of our paper:
 
-> **From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos**
+> **From Images to Insights: Cell Counting and Uniformity Grading of Day 3 Embryos**  
 > Nguyen Duy Tan, Tran Phuong Huy, Tran Thi Thanh Thuy, Hoang Thi Diem Tuyet, Dang Truong Son, Pham The Bao, Vu Ngoc Thanh Sang
+
+📄 Paper: [https://doi.org/10.1016/j.compbiomed.2025.110872](https://doi.org/10.1016/j.compbiomed.2025.110872)
 
 ---
 
